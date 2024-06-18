@@ -1,8 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [
-    "./src/**/*.{html,ts}",
-  ],
+  content: ['./src/**/*.{html,ts}'],
   theme: {
     extend: {
       colors: {
@@ -21,6 +19,11 @@ module.exports = {
         'neutral-3': '#393D41',
         'neutral-4': '#2C2F33',
         'neutral-5': '#222528',
+
+        'tertiary-1': '#F9EED7',
+        'tertiary-2': '#F2DAAB',
+        'tertiary-3': '#EBC77F',
+        'tertiary-4': '#E5B454',
       },
     },
   },

@@ -1,0 +1,10 @@
+<div class="flex items-center gap-2">
+  @if (tags.length > 2) {
+    <app-tag *ngFor="let tag of tags | slice: 0 : 2" [tag]="tag" />
+    <span class="text-white" [matTooltip]="getLabelExtraTags()">
+      +{{ tags.length - 2 }}
+    </span>
+  } @else {
+    <app-tag *ngFor="let tag of tags" [tag]="tag" />
+  }
+</div>

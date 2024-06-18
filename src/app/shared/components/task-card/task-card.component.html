@@ -1,0 +1,53 @@
+<div
+  class="flex flex-col justify-between gap-2 bg-neutral-4 w-[21.75rem] h-52 rounded-md p-4"
+>
+  <div class="flex justify-between">
+    <span class="font-semibold text-white text-xl">{{ card.name }}</span>
+    <span class="material-icons text-neutral-2">more_horiz</span>
+  </div>
+  <div class="flex w-full justify-between">
+    <div>
+      <span class="font-semibold text-white">
+        {{ card.pointEstimate }} Points
+      </span>
+    </div>
+    <app-time-task [dueDate]="card.dueDate" />
+  </div>
+  <div class="flex">
+    <app-tag-list [tags]="card.tags" />
+  </div>
+  <div class="flex justify-between items-center">
+    <app-avatar [source]="card.assignee.avatar" />
+    <div class="flex gap-4 text-white">
+      <div class="flex">
+        <img
+          ngSrc="/assets/icons/clip.svg"
+          alt="comment-icon"
+          [width]="16"
+          [height]="16"
+          class="rounded-full"
+        />
+      </div>
+      <div class="flex">
+        <span>3&nbsp;</span>
+        <img
+          ngSrc="/assets/icons/squares.svg"
+          alt="comment-icon"
+          [width]="16"
+          [height]="16"
+          class="rounded-full"
+        />
+      </div>
+      <div class="flex">
+        <span>3&nbsp;</span>
+        <img
+          ngSrc="/assets/icons/comment.svg"
+          alt="comment-icon"
+          [width]="16"
+          [height]="16"
+          class="rounded-full"
+        />
+      </div>
+    </div>
+  </div>
+</div>
