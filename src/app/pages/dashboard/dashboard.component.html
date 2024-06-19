@@ -1,5 +1,7 @@
-<div
-  class="bg-blueGray-100 relative transition-all duration-500 ease-in-out lg:ml-72 ml-28 w-full my-10"
->
-  <app-task-card />
+<div>
+  @for (task of tasks; track task.id) {
+    <div class="mb-4">
+      <app-task-card [card]="task" />
+    </div>
+  }
 </div>
