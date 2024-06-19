@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { TagsEnum } from '../../interfaces';
+import { TagsEnum } from '../../../../core/interfaces';
 import { TagComponent } from '../tag/tag.component';
 import { NgForOf, SlicePipe } from '@angular/common';
 import { MatTooltip } from '@angular/material/tooltip';

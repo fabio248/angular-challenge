@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { TaskCardComponent } from '../../shared/components/task-card/task-card.component';
-import { StatusTaskEnum, TagsEnum, TaskI } from '../../shared/interfaces';
+import { TaskCardComponent } from './components/task-card/task-card.component';
+import { StatusTaskEnum, TagsEnum, TaskI } from '../../core/interfaces';
 
 @Component({
   selector: 'app-dashboard',
