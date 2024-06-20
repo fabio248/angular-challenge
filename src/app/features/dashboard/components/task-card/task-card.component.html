@@ -19,34 +19,14 @@
   <div class="flex justify-between items-center">
     <app-avatar [source]="card.assignee.avatar" />
     <div class="flex gap-4 text-white">
+      <mat-icon svgIcon="clip" style="width: 16px" />
       <div class="flex">
-        <img
-          ngSrc="/assets/icons/clip.svg"
-          alt="comment-icon"
-          [width]="16"
-          [height]="16"
-          class="rounded-full"
-        />
+        <span>3&nbsp;</span>
+        <mat-icon svgIcon="squares" style="width: 16px" />
       </div>
       <div class="flex">
         <span>3&nbsp;</span>
-        <img
-          ngSrc="/assets/icons/squares.svg"
-          alt="comment-icon"
-          [width]="16"
-          [height]="16"
-          class="rounded-full"
-        />
-      </div>
-      <div class="flex">
-        <span>3&nbsp;</span>
-        <img
-          ngSrc="/assets/icons/comment.svg"
-          alt="comment-icon"
-          [width]="16"
-          [height]="16"
-          class="rounded-full"
-        />
+        <mat-icon svgIcon="comment" style="width: 16px" />
       </div>
     </div>
   </div>
