@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import { TaskCardComponent } from './components/task-card/task-card.component';
 import { StatusTaskEnum, TagsEnum, TaskI } from '../../core/interfaces';
 import { MatIcon } from '@angular/material/icon';
+import { ColumnsComponent } from './components/columns/columns.component';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [TaskCardComponent, MatIcon],
+  imports: [TaskCardComponent, MatIcon, ColumnsComponent],
   templateUrl: './dashboard.component.html',
 })
 export class DashboardComponent {

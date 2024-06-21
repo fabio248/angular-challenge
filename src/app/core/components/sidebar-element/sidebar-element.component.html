@@ -4,7 +4,10 @@
     class="flex items-center justify-between h-14 gap-2"
     routerLinkActive="text-primary-4 bg-gradient-to-l from-[#3D3236]"
   >
-    <div class="flex items-center gap-2">
+    <div
+      class="flex items-center gap-2"
+      [ngClass]="router.url !== route ? 'text-neutral-2' : ''"
+    >
       <span class="material-icons pl-8">{{ icon }}</span>
       &nbsp;
       <span class="lg:block hidden">{{ title }}</span>
