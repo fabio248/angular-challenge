@@ -1,0 +1,23 @@
+<div class="flex mt-8 justify-between">
+  <div class="flex gap-2 text-white items-center">
+    <div
+      routerLink="/my-task"
+      class="flex h-10 w-10 hover:text-primary-4 rounded-xl items-center justify-center"
+      routerLinkActive="text-primary-4 border-primary-4 border"
+    >
+      <span class="material-icons">menu</span>
+    </div>
+    <div
+      routerLink="/dashboard"
+      class="flex hover:text-primary-4 h-10 w-10 rounded-xl items-center justify-center"
+      routerLinkActive="text-primary-4 border-primary-4 border"
+    >
+      <span class="material-icons">grid_view</span>
+    </div>
+  </div>
+  <div>
+    <button mat-mini-fab aria-label="create task">
+      <span class="material-icons">add</span>
+    </button>
+  </div>
+</div>

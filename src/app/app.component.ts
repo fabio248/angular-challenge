@@ -1,19 +1,17 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { MatSlideToggle } from '@angular/material/slide-toggle';
-import { MatMiniFabButton } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
 import { SidebarComponent } from './core/components/sidebar/sidebar.component';
+import { SearchBarComponent } from './core/components/search-bar/search-bar.component';
+import { MainButtonsComponent } from './core/components/main-buttons/main-buttons.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [
     RouterOutlet,
-    MatSlideToggle,
-    MatMiniFabButton,
-    MatIconModule,
     SidebarComponent,
+    SearchBarComponent,
+    MainButtonsComponent,
   ],
   templateUrl: './app.component.html',
 })

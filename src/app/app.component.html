@@ -1,2 +1,10 @@
 <app-sidebar />
-<router-outlet />
+<div
+  class="lg:pl-72 pl-32 w-full mt-10 fixed pr-10 transition-all duration-500 ease-in-out"
+>
+  <app-search-bar />
+  <app-main-buttons />
+</div>
+<div class="flex pt-36">
+  <router-outlet />
+</div>
