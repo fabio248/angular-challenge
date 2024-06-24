@@ -1,8 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { TaskCardComponent } from './components/task-card/task-card.component';
-import { StatusTaskEnum, TagsEnum, TaskI } from '../../core/interfaces';
+import {
+  StatusTaskEnum,
+  TagsEnum,
+  TaskModel,
+} from '../../core/models/task.model';
 import { MatIcon } from '@angular/material/icon';
 import { ColumnsComponent } from './components/columns/columns.component';
+import { Store } from '@ngrx/store';
+import { loadTask } from './state/task.actions';
 
 @Component({
   selector: 'app-dashboard',
@@ -10,8 +16,14 @@ import { ColumnsComponent } from './components/columns/columns.component';
   imports: [TaskCardComponent, MatIcon, ColumnsComponent],
   templateUrl: './dashboard.component.html',
 })
-export class DashboardComponent {
-  tasks: TaskI[] = [
+export class DashboardComponent implements OnInit {
+  private store = inject(Store);
+
+  ngOnInit() {
+    this.store.dispatch(loadTask());
+  }
+
+  tasks: TaskModel[] = [
     {
       id: '1',
       name: 'Task 1',

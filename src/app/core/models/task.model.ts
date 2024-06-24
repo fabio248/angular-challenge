@@ -1,10 +1,4 @@
-export interface UserI {
-  id: string;
-  fullName: string;
-  email: string;
-  type: string;
-  avatar: string;
-}
+import { UserI } from './user.model';
 
 export enum TagsEnum {
   ANDROID = 'ANDROID',
@@ -22,7 +16,7 @@ export enum StatusTaskEnum {
   CANCELLED = 'CANCELLED',
 }
 
-export interface TaskI {
+export interface TaskModel {
   id: string;
   name: string;
   tags: TagsEnum[];

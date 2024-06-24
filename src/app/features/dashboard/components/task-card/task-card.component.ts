@@ -4,7 +4,7 @@ import { AvatarComponent } from '../../../../core/components/avatar/avatar.compo
 import { TimeTaskComponent } from '../time-task/time-task.component';
 import { MatIcon, MatIconRegistry } from '@angular/material/icon';
 import { TagComponent } from '../tag/tag.component';
-import { TaskI } from '../../../../core/interfaces';
+import { TaskModel } from '../../../../core/models/task.model';
 import { TagListComponent } from '../tag-list/tag-list.component';
 import { DomSanitizer } from '@angular/platform-browser';
 
@@ -22,7 +22,7 @@ import { DomSanitizer } from '@angular/platform-browser';
   templateUrl: './task-card.component.html',
 })
 export class TaskCardComponent {
-  @Input() card!: TaskI;
+  @Input() card!: TaskModel;
 
   constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer) {
     iconRegistry.addSvgIcon(
