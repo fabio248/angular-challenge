@@ -52,5 +52,8 @@
     "tailwindcss": "3.4.4",
     "tslint-config-prettier": "1.18.0",
     "typescript": "~5.4.2"
+  },
+  "engines": {
+    "node": ">=22.0.0"
   }
 }
