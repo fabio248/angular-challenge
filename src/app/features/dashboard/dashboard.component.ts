@@ -1,30 +1,26 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { TaskCardComponent } from './components/task-card/task-card.component';
-import {
-  StatusTaskEnum,
-  TagsEnum,
-  TaskModel,
-} from '../../core/models/task.model';
+import { TaskModel } from '../../core/models/task.model';
 import { MatIcon } from '@angular/material/icon';
 import { ColumnsComponent } from './components/columns/columns.component';
 import { Store } from '@ngrx/store';
-import { loadedTask, loadTask } from './state/task.actions';
-import { TasksService } from '../../core/services/tasks.service';
+import { loadTask } from './state/task.actions';
+import { Observable } from 'rxjs';
+import { AsyncPipe } from '@angular/common';
+import { AppState } from '../../core/state/app.state';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [TaskCardComponent, MatIcon, ColumnsComponent],
+  imports: [TaskCardComponent, MatIcon, ColumnsComponent, AsyncPipe],
   templateUrl: './dashboard.component.html',
 })
 export class DashboardComponent implements OnInit {
-  private taskService = inject(TasksService);
-  private store = inject(Store);
-  tasks: TaskModel[] = [];
+  private store: Store<AppState> = inject(Store);
+  tasks: Observable<TaskModel[]> = new Observable();
 
   async ngOnInit() {
     this.store.dispatch(loadTask());
-    this.tasks = await this.taskService.getTasks();
-    this.store.dispatch(loadedTask({ data: this.tasks }));
+    this.tasks = this.store.select((state) => state.tasksList.tasks);
   }
 }

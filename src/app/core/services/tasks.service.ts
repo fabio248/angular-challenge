@@ -1,16 +1,15 @@
 import { Injectable } from '@angular/core';
-import axios from '../utils/axios.config';
 import { TaskModel } from '../models/task.model';
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TasksService {
-  constructor() {}
+  constructor(private http: HttpClient) {}
 
-  async getTasks() {
-    const response = await axios.get<TaskModel[]>('/tasks');
-
-    return response.data;
+  getTasks() {
+    return this.http.get<TaskModel[]>(`tasks`);
   }
 }

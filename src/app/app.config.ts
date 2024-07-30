@@ -11,6 +11,8 @@ import { provideHttpClient } from '@angular/common/http';
 import { provideStore } from '@ngrx/store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { ROOT_REDUCER } from './core/state/app.state';
+import { provideEffects } from '@ngrx/effects';
+import { TaskEffects } from './features/dashboard/state/task.effects';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -20,5 +22,6 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(),
     provideStore(ROOT_REDUCER),
     provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() }),
+    provideEffects(TaskEffects),
   ],
 };
