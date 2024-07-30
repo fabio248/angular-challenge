@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { NgClass } from '@angular/common';
-import { TagsEnum } from '../../../../core/interfaces';
+import { TagsEnum } from '../../../../core/models/task.model';
 import { getLabelTags } from '../../utils/get-label-tag.utils';
 
 @Component({

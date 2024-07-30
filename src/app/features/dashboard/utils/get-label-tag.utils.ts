@@ -1,4 +1,4 @@
-import { TagsEnum } from '../../../core/interfaces';
+import { TagsEnum } from '../../../core/models/task.model';
 
 export function getLabelTags(tag: TagsEnum) {
   switch (tag) {

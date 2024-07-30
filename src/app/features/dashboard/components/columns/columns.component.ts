@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { TaskI } from '../../../../core/interfaces';
+import { TaskModel } from '../../../../core/models/task.model';
 import { TaskCardComponent } from '../task-card/task-card.component';
 
 @Component({
@@ -11,5 +11,5 @@ import { TaskCardComponent } from '../task-card/task-card.component';
 })
 export class ColumnsComponent {
   @Input() title: string = '';
-  @Input() tasks: TaskI[] = [];
+  @Input() tasks: TaskModel[] = [];
 }
