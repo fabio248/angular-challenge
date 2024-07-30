@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
-import { TaskModel } from '../../../../core/models/task.model';
+import { StatusTaskEnum, TaskModel } from '../../../../core/models/task.model';
 import { TaskCardComponent } from '../task-card/task-card.component';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
 
 @Component({
@@ -13,5 +13,15 @@ import { AsyncPipe } from '@angular/common';
 })
 export class ColumnsComponent {
   @Input() title: string = '';
+  @Input() typeTask!: StatusTaskEnum;
   @Input() tasks: Observable<TaskModel[]> = new Observable();
+  totalTasks: Observable<number> = new Observable();
+
+  constructor() {
+    this.totalTasks = this.tasks.pipe(
+      map(
+        (tasks) => tasks.filter((task) => task.status === this.typeTask).length,
+      ),
+    );
+  }
 }
