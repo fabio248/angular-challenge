@@ -11,3 +11,9 @@ export const selectLoadingTasks = createSelector(
   taskSelectors,
   (state) => state.loading,
 );
+
+export const selectLoadingAndEmptyTasks = createSelector(
+  selectLoadingTasks,
+  selectListTasks,
+  (loading, tasks) => loading && tasks.length === 0,
+);

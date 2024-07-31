@@ -1,4 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
+@import 'primeng/resources/themes/lara-light-blue/theme.css';
+@import 'primeng/resources/primeng.css';
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -17,4 +19,8 @@ body {
   padding-right: 2rem;
   font-family: Arial, sans-serif;
   background: #222528;
+}
+
+.skeleton {
+  background-color: #44474a;
 }

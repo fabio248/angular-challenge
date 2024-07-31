@@ -2,9 +2,7 @@
   class="flex flex-col gap-2 transition-all duration-500 ease-in-out lg:ml-[18rem] ml-[7.5rem]"
 >
   @if (loading | async) {
-    <div class="item">
-      <ngx-skeleton-loader animation="pulse" count="5" appearance="circle" />
-    </div>
+    <app-skeleton-columns />
   } @else {
     <div class="flex gap-8">
       <app-columns [tasks]="tasks" [statusTask]="StatusTaskEnum.BACKLOG" />
