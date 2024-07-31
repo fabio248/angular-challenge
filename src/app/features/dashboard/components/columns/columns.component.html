@@ -6,7 +6,7 @@
   </div>
   <div class="flex gap-4 flex-col">
     @for (task of tasks | async; track task.id) {
-      @if (task.status === typeTask) {
+      @if (task.status === statusTask) {
         <app-task-card [card]="task" />
       }
     }

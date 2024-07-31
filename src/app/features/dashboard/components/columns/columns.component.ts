@@ -1,8 +1,9 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { StatusTaskEnum, TaskModel } from '../../../../core/models/task.model';
 import { TaskCardComponent } from '../task-card/task-card.component';
 import { map, Observable } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
+import { getTitleColumn } from '../../utils/get-title-column.util';
 
 @Component({
   selector: 'app-columns',
@@ -11,17 +12,19 @@ import { AsyncPipe } from '@angular/common';
   templateUrl: './columns.component.html',
   styleUrl: './columns.component.css',
 })
-export class ColumnsComponent {
-  @Input() title: string = '';
-  @Input() typeTask!: StatusTaskEnum;
+export class ColumnsComponent implements OnInit {
+  @Input() statusTask!: StatusTaskEnum;
   @Input() tasks: Observable<TaskModel[]> = new Observable();
+  title: string = '';
   totalTasks: Observable<number> = new Observable();
 
-  constructor() {
+  ngOnInit() {
     this.totalTasks = this.tasks.pipe(
       map(
-        (tasks) => tasks.filter((task) => task.status === this.typeTask).length,
+        (tasks) =>
+          tasks.filter((task) => task.status === this.statusTask).length,
       ),
     );
+    this.title = getTitleColumn[this.statusTask];
   }
 }

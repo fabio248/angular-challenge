@@ -1,31 +1,17 @@
 <div
   class="flex flex-col gap-2 transition-all duration-500 ease-in-out lg:ml-[18rem] ml-[7.5rem]"
 >
-  <div class="flex gap-8">
-    <app-columns
-      title="Backlog"
-      [tasks]="tasks"
-      [typeTask]="StatusTaskEnum.BACKLOG"
-    />
-    <app-columns
-      title="Todo"
-      [tasks]="tasks"
-      [typeTask]="StatusTaskEnum.TODO"
-    />
-    <app-columns
-      title="Working"
-      [tasks]="tasks"
-      [typeTask]="StatusTaskEnum.IN_PROGRESS"
-    />
-    <app-columns
-      title="Completed"
-      [tasks]="tasks"
-      [typeTask]="StatusTaskEnum.DONE"
-    />
-    <app-columns
-      title="Canceled"
-      [tasks]="tasks"
-      [typeTask]="StatusTaskEnum.CANCELLED"
-    />
-  </div>
+  @if (loading | async) {
+    <div class="item">
+      <ngx-skeleton-loader animation="pulse" count="5" appearance="circle" />
+    </div>
+  } @else {
+    <div class="flex gap-8">
+      <app-columns [tasks]="tasks" [statusTask]="StatusTaskEnum.BACKLOG" />
+      <app-columns [tasks]="tasks" [statusTask]="StatusTaskEnum.TODO" />
+      <app-columns [tasks]="tasks" [statusTask]="StatusTaskEnum.IN_PROGRESS" />
+      <app-columns [tasks]="tasks" [statusTask]="StatusTaskEnum.DONE" />
+      <app-columns [tasks]="tasks" [statusTask]="StatusTaskEnum.CANCELLED" />
+    </div>
+  }
 </div>
