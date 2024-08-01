@@ -68,12 +68,15 @@
   <button mat-menu-item><mat-icon svgIcon="estimate" />8 Points</button>
 </mat-menu>
 
-<mat-menu #assignMenu="matMenu" class="border">
-  <button mat-menu-item>Item 1</button>
-  <button mat-menu-item>Item 2</button>
+<mat-menu #assignMenu="matMenu" class="border border-neutral-2">
+  @for (user of users | async; track user.id) {
+    <button mat-menu-item>
+      <app-avatar-label avatar="{{ user.avatar }}" name="{{ user.fullName }}" />
+    </button>
+  }
 </mat-menu>
 
-<mat-menu #tagMenu="matMenu" class="border">
+<mat-menu #tagMenu="matMenu" class="border border-neutral-2">
   <button mat-menu-item (click)="addTag($event)">
     <div class="flex gap-1 items-center">
       <input type="checkbox" class="w-4 h-4 accent-primary-4" />

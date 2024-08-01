@@ -12,11 +12,12 @@ import { provideStore } from '@ngrx/store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { ROOT_REDUCER } from './core/state/app.state';
 import { provideEffects } from '@ngrx/effects';
-import { TaskEffects } from './features/dashboard/state/task.effects';
+import { TaskEffect } from './core/state/effects/task.effect';
 import {
   apiTokenInterceptor,
   baseUrlInterceptor,
 } from './core/utils/request.interceptor';
+import { UserEffect } from './core/state/effects/user.effect';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -28,6 +29,6 @@ export const appConfig: ApplicationConfig = {
     ),
     provideStore(ROOT_REDUCER),
     provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() }),
-    provideEffects(TaskEffects),
+    provideEffects(TaskEffect, UserEffect),
   ],
 };

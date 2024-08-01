@@ -1,4 +1,4 @@
-import { UserI } from './user.model';
+import { UserModel } from './user.model';
 
 export enum TagsEnum {
   ANDROID = 'ANDROID',
@@ -21,8 +21,8 @@ export interface TaskModel {
   name: string;
   tags: TagsEnum[];
   status: StatusTaskEnum;
-  assignee: UserI;
-  creator: UserI;
+  assignee: UserModel;
+  creator: UserModel;
   dueDate: Date;
   pointEstimate: string;
   createdAt: Date;

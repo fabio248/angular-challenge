@@ -9,7 +9,7 @@ import { NgOptimizedImage } from '@angular/common';
   styleUrl: './avatar.component.css',
 })
 export class AvatarComponent {
-  @Input() source!: string;
+  @Input() source: string | null = 'https://avatar.iran.liara.run/public/42';
   @Input() alt: string = 'Avatar';
   @Input() width: string = '32';
   @Input() height: string = '32';

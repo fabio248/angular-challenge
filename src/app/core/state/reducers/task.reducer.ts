@@ -1,6 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
-import { loadedTask, loadTask } from './task.actions';
-import { TaskState } from '../../../core/state/task.state';
+import { loadedTasks, loadTasks } from '../actions/task.action';
+import { TaskState } from '../task.state';
 
 export const taskInitialState: TaskState = {
   loading: false,
@@ -9,11 +9,11 @@ export const taskInitialState: TaskState = {
 
 export const tasksReducer = createReducer(
   taskInitialState,
-  on(loadTask, (state) => ({
+  on(loadTasks, (state) => ({
     ...state,
     loading: true,
   })),
-  on(loadedTask, (state, { data }) => ({
+  on(loadedTasks, (state, { data }) => ({
     ...state,
     loading: false,
     tasks: data,

@@ -5,6 +5,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMiniFabButton } from '@angular/material/button';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { CreateTaskDialogComponent } from '../create-task-dialog/create-task-dialog.component';
+import { Store } from '@ngrx/store';
+import { AppState } from '../../state/app.state';
+import { loadUsers } from '../../state/actions/user.action';
 
 @Component({
   selector: 'app-main-buttons',
@@ -20,9 +23,10 @@ import { CreateTaskDialogComponent } from '../create-task-dialog/create-task-dia
 })
 export class MainButtonsComponent {
   readonly dialog = inject(MatDialog);
+  readonly store: Store<AppState> = inject(Store);
 
   constructor(public router: Router) {
-    this.openCreateTaskDialog();
+    this.store.dispatch(loadUsers());
   }
 
   openCreateTaskDialog(): void {

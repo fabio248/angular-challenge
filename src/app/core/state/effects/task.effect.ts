@@ -1,11 +1,11 @@
-import { TasksService } from '../../../core/services/tasks.service';
+import { TasksService } from '../../services/tasks.service';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { loadedTask, loadTask } from './task.actions';
+import { loadedTasks, loadTasks } from '../actions/task.action';
 import { map, switchMap } from 'rxjs';
 import { Injectable } from '@angular/core';
 
 @Injectable()
-export class TaskEffects {
+export class TaskEffect {
   constructor(
     private actions$: Actions,
     private tasksService: TasksService,
@@ -13,9 +13,9 @@ export class TaskEffects {
 
   loadTask$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(loadTask),
+      ofType(loadTasks),
       switchMap(() =>
-        this.tasksService.getTasks().pipe(map((data) => loadedTask({ data }))),
+        this.tasksService.getTasks().pipe(map((data) => loadedTasks({ data }))),
       ),
     ),
   );

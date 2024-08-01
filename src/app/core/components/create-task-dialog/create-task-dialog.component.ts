@@ -1,4 +1,4 @@
-import { Component, inject, model } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import {
   MatDialogActions,
   MatDialogClose,
@@ -18,6 +18,13 @@ import {
   MatDatepickerToggle,
 } from '@angular/material/datepicker';
 import { provideNativeDateAdapter } from '@angular/material/core';
+import { AvatarLabelComponent } from '../avatar-label/avatar-label.component';
+import { Observable } from 'rxjs';
+import { UserModel } from '../../models/user.model';
+import { Store } from '@ngrx/store';
+import { AppState } from '../../state/app.state';
+import { selectListUsers } from '../../state/selectors/user.selector';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'app-create-task-modal',
@@ -38,6 +45,8 @@ import { provideNativeDateAdapter } from '@angular/material/core';
     MatDatepicker,
     MatDatepickerToggle,
     MatDatepickerInput,
+    AvatarLabelComponent,
+    AsyncPipe,
   ],
   providers: [provideNativeDateAdapter()],
   templateUrl: './create-task-dialog.component.html',
@@ -45,10 +54,8 @@ import { provideNativeDateAdapter } from '@angular/material/core';
 })
 export class CreateTaskDialogComponent {
   readonly dialogRef = inject(MatDialogRef<CreateTaskDialogComponent>);
-
-  close(): void {
-    this.dialogRef.close();
-  }
+  readonly store: Store<AppState> = inject(Store);
+  users: Observable<UserModel[]> = new Observable();
 
   constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer) {
     iconRegistry.addSvgIcon(
@@ -67,9 +74,17 @@ export class CreateTaskDialogComponent {
       'calendar',
       sanitizer.bypassSecurityTrustResourceUrl('assets/icons/calendar.svg'),
     );
+    this.users = this.store.select(selectListUsers);
+    this.users.subscribe((users) => {
+      console.log(users);
+    });
   }
 
   addTag(event: MouseEvent): void {
     event.stopPropagation();
+  }
+
+  close(): void {
+    this.dialogRef.close();
   }
 }
