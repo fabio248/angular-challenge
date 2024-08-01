@@ -16,7 +16,11 @@
     </div>
   </div>
   <div>
-    <button mat-mini-fab aria-label="create task">
+    <button
+      mat-mini-fab
+      aria-label="create task"
+      (click)="openCreateTaskDialog()"
+    >
       <span class="material-icons">add</span>
     </button>
   </div>

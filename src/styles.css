@@ -24,3 +24,13 @@ body {
 .skeleton {
   background-color: #44474a;
 }
+
+.create-task-dialog {
+  .mat-mdc-dialog-container {
+    --mdc-dialog-container-color: #393d41;
+    --mdc-dialog-container-shape: 8px;
+  }
+  .mat-mdc-dialog-title {
+    padding: 1rem;
+  }
+}
