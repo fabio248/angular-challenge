@@ -17,3 +17,8 @@ export const selectLoadingAndEmptyTasks = createSelector(
   selectListTasks,
   (loading, tasks) => loading && tasks.length === 0,
 );
+
+export const selectErrorTasks = createSelector(
+  taskSelector,
+  (state) => state.error,
+);

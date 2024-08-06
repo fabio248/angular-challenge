@@ -1,109 +1,185 @@
-<input
-  mat-dialog-title
-  class="bg-transparent text-neutral-2 font-semibold focus:outline-none pt-2"
-  placeholder="Task Title"
-/>
-<mat-dialog-content>
-  <div class="flex flex-wrap w-full gap-3">
-    <button
-      class="flex gap-2 rounded bg-[#94979A1A] text-neutral-1 px-4 py-1 items-center"
-      [matMenuTriggerFor]="estimatedMenu"
-    >
-      <mat-icon svgIcon="estimate" />
-      Estimate
-    </button>
-    <button
-      class="flex gap-2 rounded bg-[#94979A1A] text-neutral-1 px-4 py-1 items-center"
-      [matMenuTriggerFor]="assignMenu"
-    >
-      <mat-icon svgIcon="user" />
-      Assignee
-    </button>
-    <button
-      class="flex gap-2 rounded bg-[#94979A1A] text-neutral-1 px-4 py-1 items-center"
-      [matMenuTriggerFor]="tagMenu"
-    >
-      <mat-icon svgIcon="label" />
-      Label
-    </button>
-    <button
-      class="flex rounded bg-[#94979A1A] text-neutral-1 px-4 py-1 items-center"
-      (click)="picker.open()"
-    >
-      <input
-        matInput
-        [matDatepicker]="picker"
-        style="width: 0; height: 25px; visibility: hidden"
-      />
-      <mat-icon svgIcon="calendar" class="mr-1" />
-      Due Date
-    </button>
-    <div>
-      <mat-datepicker #picker></mat-datepicker>
-    </div>
-  </div>
-</mat-dialog-content>
-<mat-dialog-actions>
-  <div class="flex gap-6">
-    <button
-      class="bg-transparent text-neutral-1 p-2 rounded-lg hover:bg-neutral-2"
-      (click)="close()"
-    >
-      Cancel
-    </button>
-    <button
-      class="bg-primary-4 text-neutral-1 p-2 rounded-lg disabled:bg-primary-2"
-      disabled
-    >
-      Create
-    </button>
-  </div>
-</mat-dialog-actions>
+<form [formGroup]="addForm">
+  <input
+    id="task-name"
+    mat-dialog-title
+    class="bg-transparent text-neutral-2 font-semibold focus:outline-none pt-2 w-full"
+    placeholder="Task Title"
+    formControlName="name"
+  />
 
+  <mat-dialog-content>
+    <div class="flex flex-wrap w-full gap-3">
+      <button
+        class="flex gap-2 rounded text-neutral-1 px-4 py-1 items-center"
+        [ngClass]="
+          getValueForm('pointEstimate') !== null ? '' : 'bg-[#94979A1A]'
+        "
+        [matMenuTriggerFor]="estimatedMenu"
+      >
+        <mat-icon svgIcon="estimate" />
+        @if (getValueForm('pointEstimate') === null) {
+          <span>Estimate</span>
+        } @else {
+          <span>{{ getValueForm('pointEstimate') }} Points</span>
+        }
+      </button>
+      <button
+        class="flex gap-2 rounded text-neutral-1 px-4 py-1 items-center"
+        [ngClass]="getValueForm('assigneeId') ? '' : 'bg-[#94979A1A]'"
+        [matMenuTriggerFor]="assignMenu"
+      >
+        @if (getValueForm('assigneeId') === null) {
+          <mat-icon svgIcon="user" />
+          <span>Assignee</span>
+        } @else {
+          <app-avatar-label
+            avatar="{{ getValueForm('assigneeAvatar') }}"
+            name="{{ getValueForm('assigneeName') }}"
+          />
+        }
+      </button>
+      <button
+        class="flex gap-2 rounded text-neutral-1 px-4 py-1 items-center bg-[#94979A1A]"
+        [matMenuTriggerFor]="tagMenu"
+      >
+        @if (getValueForm('tags').length === 0) {
+          <mat-icon svgIcon="label" />
+          <span>Tag</span>
+        } @else {
+          <span>{{ getLabelTag() }}</span>
+        }
+      </button>
+      <button
+        class="flex rounded text-neutral-1 px-4 py-1 items-center bg-[#94979A1A]"
+        (click)="picker.open()"
+      >
+        <input
+          matInput
+          [matDatepicker]="picker"
+          style="width: 0; height: 25px; visibility: hidden"
+          formControlName="dueDate"
+        />
+        @if (!getValueForm('dueDate')) {
+          <mat-icon svgIcon="calendar" class="mr-1" />
+          Due Date
+        } @else {
+          <mat-icon svgIcon="calendar" class="mr-1" />
+          <span>{{ getValueForm('dueDate') | date: 'mediumDate' }}</span>
+        }
+      </button>
+      <div>
+        <mat-datepicker #picker></mat-datepicker>
+      </div>
+    </div>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <div class="flex gap-6">
+      <button
+        class="bg-transparent text-neutral-1 p-2 rounded-lg hover:bg-neutral-2"
+        (click)="close()"
+      >
+        Cancel
+      </button>
+      <button
+        (click)="submit()"
+        [disabled]="addForm.invalid"
+        class="bg-primary-4 text-neutral-1 p-2 rounded-lg disabled:bg-primary-2"
+      >
+        Create
+      </button>
+    </div>
+  </mat-dialog-actions>
+</form>
+
+<!--Menus for estimatedMenu, assignMenu, and tagMenu-->
 <mat-menu #estimatedMenu="matMenu" class="border border-neutral-2">
-  <button mat-menu-item><mat-icon svgIcon="estimate" />0 Points</button>
-  <button mat-menu-item><mat-icon svgIcon="estimate" />1 Points</button>
-  <button mat-menu-item><mat-icon svgIcon="estimate" />2 Points</button>
-  <button mat-menu-item><mat-icon svgIcon="estimate" />4 Points</button>
-  <button mat-menu-item><mat-icon svgIcon="estimate" />8 Points</button>
+  <button mat-menu-item (click)="addPointEstimate(0)">
+    <mat-icon svgIcon="estimate" />0 Points
+  </button>
+  <button mat-menu-item (click)="addPointEstimate(1)">
+    <mat-icon svgIcon="estimate" />1 Points
+  </button>
+  <button mat-menu-item (click)="addPointEstimate(2)">
+    <mat-icon svgIcon="estimate" />2 Points
+  </button>
+  <button mat-menu-item (click)="addPointEstimate(4)">
+    <mat-icon svgIcon="estimate" />4 Points
+  </button>
+  <button mat-menu-item (click)="addPointEstimate(8)">
+    <mat-icon svgIcon="estimate" />8 Points
+  </button>
 </mat-menu>
 
 <mat-menu #assignMenu="matMenu" class="border border-neutral-2">
   @for (user of users | async; track user.id) {
-    <button mat-menu-item>
+    <button
+      mat-menu-item
+      (click)="
+        addAssigneeId({
+          assigneeId: user.id,
+          assigneeAvatar: user.avatar,
+          assigneeName: user.fullName,
+        })
+      "
+    >
       <app-avatar-label avatar="{{ user.avatar }}" name="{{ user.fullName }}" />
     </button>
   }
 </mat-menu>
 
 <mat-menu #tagMenu="matMenu" class="border border-neutral-2">
-  <button mat-menu-item (click)="addTag($event)">
+  <button mat-menu-item (click)="$event.stopPropagation()">
     <div class="flex gap-1 items-center">
-      <input type="checkbox" class="w-4 h-4 accent-primary-4" />
+      <input
+        type="checkbox"
+        class="w-4 h-4 accent-primary-4"
+        value="IOS"
+        (change)="addTag($event)"
+      />
       <span>IOS</span>
     </div>
   </button>
-  <button mat-menu-item (click)="addTag($event)">
+  <button mat-menu-item (click)="$event.stopPropagation()">
     <div class="flex gap-1 items-center">
-      <input type="checkbox" class="w-4 h-4 accent-primary-4" />
+      <input
+        type="checkbox"
+        class="w-4 h-4 accent-primary-4"
+        value="ANDROID"
+        (change)="addTag($event)"
+      />
       <span>Android</span>
     </div>
   </button>
-  <button mat-menu-item (click)="addTag($event)">
+  <button mat-menu-item (click)="$event.stopPropagation()">
     <div class="flex gap-1 items-center">
-      <input type="checkbox" class="w-4 h-4 accent-primary-4" />
+      <input
+        type="checkbox"
+        class="w-4 h-4 accent-primary-4"
+        value="REACT"
+        (change)="addTag($event)"
+      />
       <span>React</span>
     </div>
   </button>
-  <button mat-menu-item (click)="addTag($event)">
+  <button mat-menu-item (click)="$event.stopPropagation()">
     <div class="flex gap-1 items-center">
-      <input type="checkbox" class="w-4 h-4 accent-primary-4" />
+      <input
+        type="checkbox"
+        class="w-4 h-4 accent-primary-4"
+        value="NODE_JS"
+        (change)="addTag($event)"
+      />
       <span>Node Js</span>
     </div>
   </button>
-  <button mat-menu-item (click)="addTag($event)">
+  <button mat-menu-item (click)="$event.stopPropagation()">
     <div class="flex gap-1 items-center">
-      <input type="checkbox" class="w-4 h-4 accent-primary-4" />
+      <input
+        type="checkbox"
+        class="w-4 h-4 accent-primary-4"
+        value="RAILS"
+        (change)="addTag($event)"
+      />
       <span>Rails</span>
     </div>
   </button>

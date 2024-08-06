@@ -34,7 +34,6 @@ export class MainButtonsComponent {
 
     dialogConfig.panelClass = 'create-task-dialog';
     dialogConfig.width = '36rem';
-    dialogConfig.height = '11.5rem';
     const dialogRef = this.dialog.open(CreateTaskDialogComponent, dialogConfig);
 
     dialogRef.afterClosed().subscribe((result) => {
