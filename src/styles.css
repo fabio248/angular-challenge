@@ -34,3 +34,30 @@ body {
     padding: 1rem;
   }
 }
+
+/* Customize the scrollbar */
+::-webkit-scrollbar {
+  width: 12px; /* Width of the scrollbar */
+  height: 12px; /* Height of the scrollbar */
+  background: #222528;
+}
+
+::-webkit-scrollbar-corner {
+  background: #222528; /* Background color of the scrollbar corner */
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #222528; /* Background color of the track */
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #44474a; /* Color of the scrollbar handle */
+  border-radius: 6px; /* Rounded corners of the handle */
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; /* Color of the handle on hover */
+}
