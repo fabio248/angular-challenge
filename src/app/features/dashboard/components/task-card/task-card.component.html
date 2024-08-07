@@ -3,7 +3,9 @@
 >
   <div class="flex justify-between">
     <span class="font-semibold text-white text-xl">{{ card.name }}</span>
-    <span class="material-icons text-neutral-2">more_horiz</span>
+    <span class="material-icons text-neutral-2" [matMenuTriggerFor]="options"
+      >more_horiz</span
+    >
   </div>
   <div class="flex w-full justify-between">
     <div>
@@ -31,3 +33,20 @@
     </div>
   </div>
 </div>
+
+<mat-menu #options="matMenu">
+  <button
+    mat-menu-item
+    class="flex flex-wrap items-center"
+    (click)="openEditTaskDialog()"
+  >
+    <mat-icon svgIcon="edit" /> Edit
+  </button>
+  <button
+    mat-menu-item
+    class="flex items-center"
+    (click)="openDeleteTaskDialog()"
+  >
+    <mat-icon svgIcon="delete" style="width: 20px" /> Delete
+  </button>
+</mat-menu>

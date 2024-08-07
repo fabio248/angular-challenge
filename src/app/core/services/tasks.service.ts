@@ -13,7 +13,11 @@ export class TasksService {
     return this.http.get<TaskModel[]>(`tasks`);
   }
 
-  create(task: CreateTaskDto) {
-    return this.http.post<TaskModel>(`tasks`, task);
+  create(createTaskDto: CreateTaskDto) {
+    return this.http.post<TaskModel>(`tasks`, createTaskDto);
+  }
+
+  update(id: string, updateTaskDto: CreateTaskDto) {
+    return this.http.put<TaskModel>(`tasks/${id}`, updateTaskDto);
   }
 }

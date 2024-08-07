@@ -1,5 +1,6 @@
-import { Component, inject } from '@angular/core';
+import { Component, Inject, inject } from '@angular/core';
 import {
+  MAT_DIALOG_DATA,
   MatDialogActions,
   MatDialogClose,
   MatDialogContent,
@@ -30,9 +31,9 @@ import { Store } from '@ngrx/store';
 import { AppState } from '../../state/app.state';
 import { selectListUsers } from '../../state/selectors/user.selector';
 import { AsyncPipe, DatePipe, NgClass } from '@angular/common';
-import { StatusTaskEnum } from '../../models/task.model';
+import { StatusTaskEnum, TaskModel } from '../../models/task.model';
 import { getLabelTags } from '../../../features/dashboard/utils/get-label-tag.utils';
-import { createTask } from '../../state/actions/task.action';
+import { createTask, updateTask } from '../../state/actions/task.action';
 
 @Component({
   selector: 'app-create-task-modal',
@@ -70,6 +71,7 @@ export class CreateTaskDialogComponent {
     readonly iconRegistry: MatIconRegistry,
     readonly sanitizer: DomSanitizer,
     readonly fb: FormBuilder,
+    @Inject(MAT_DIALOG_DATA) public data?: TaskModel,
   ) {
     iconRegistry.addSvgIcon(
       'estimate',
@@ -89,15 +91,19 @@ export class CreateTaskDialogComponent {
     );
     this.users = this.store.select(selectListUsers);
     this.addForm = fb.group({
-      name: new FormControl('', Validators.required),
-      tags: new FormControl([], Validators.required),
-      status: new FormControl(StatusTaskEnum.TODO, Validators.required),
-      pointEstimate: new FormControl(null, Validators.required),
-      assigneeId: new FormControl(null, Validators.required),
-      dueDate: new FormControl('', Validators.required),
-      assigneeAvatar: new FormControl(''),
-      assigneeName: new FormControl(''),
+      name: new FormControl(data?.name || '', Validators.required),
+      tags: new FormControl(data?.tags || [], Validators.required),
+      status: new FormControl(
+        data?.status || StatusTaskEnum.TODO,
+        Validators.required,
+      ),
+      pointEstimate: new FormControl(data?.pointEstimate, Validators.required),
+      assigneeId: new FormControl(data?.assignee.id, Validators.required),
+      dueDate: new FormControl(data?.dueDate, Validators.required),
+      assigneeAvatar: new FormControl(data?.assignee.avatar || ''),
+      assigneeName: new FormControl(data?.assignee.fullName || ''),
     });
+    console.log('addForm', this.addForm.value);
   }
 
   addTag(event: Event): void {
@@ -142,17 +148,31 @@ export class CreateTaskDialogComponent {
     return getLabelTags(this.addForm.get('tags')?.value[0]);
   }
 
+  isTagSelected(tag: string): boolean {
+    const tags = this.addForm.get('tags')?.value || [];
+    return tags.includes(tag);
+  }
+
   submit() {
     if (this.addForm.invalid) {
       return;
     }
 
-    const data = { ...this.addForm.value };
-    delete data.assigneeAvatar;
-    delete data.assigneeName;
+    const bodyRequest = { ...this.addForm.value };
+    delete bodyRequest.assigneeAvatar;
+    delete bodyRequest.assigneeName;
 
-    this.store.dispatch(createTask({ data }));
+    if (this.isEditMode) {
+      this.store.dispatch(updateTask({ id: this.data!.id, data: bodyRequest }));
+    } else {
+      this.store.dispatch(createTask({ data: bodyRequest }));
+    }
+
     this.addForm.reset();
     this.close();
+  }
+
+  get isEditMode() {
+    return !!this.data;
   }
 }

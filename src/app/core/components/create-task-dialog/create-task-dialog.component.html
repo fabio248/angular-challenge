@@ -85,7 +85,7 @@
         [disabled]="addForm.invalid"
         class="bg-primary-4 text-neutral-1 p-2 rounded-lg disabled:bg-primary-2"
       >
-        Create
+        {{ isEditMode ? 'Update' : 'Create' }}
       </button>
     </div>
   </mat-dialog-actions>
@@ -135,6 +135,7 @@
         class="w-4 h-4 accent-primary-4"
         value="IOS"
         (change)="addTag($event)"
+        [checked]="isTagSelected('IOS')"
       />
       <span>IOS</span>
     </div>
@@ -146,6 +147,7 @@
         class="w-4 h-4 accent-primary-4"
         value="ANDROID"
         (change)="addTag($event)"
+        [checked]="isTagSelected('ANDROID')"
       />
       <span>Android</span>
     </div>
@@ -157,6 +159,7 @@
         class="w-4 h-4 accent-primary-4"
         value="REACT"
         (change)="addTag($event)"
+        [checked]="isTagSelected('REACT')"
       />
       <span>React</span>
     </div>
@@ -168,6 +171,7 @@
         class="w-4 h-4 accent-primary-4"
         value="NODE_JS"
         (change)="addTag($event)"
+        [checked]="isTagSelected('NODE_JS')"
       />
       <span>Node Js</span>
     </div>
@@ -179,6 +183,7 @@
         class="w-4 h-4 accent-primary-4"
         value="RAILS"
         (change)="addTag($event)"
+        [checked]="isTagSelected('RAILS')"
       />
       <span>Rails</span>
     </div>

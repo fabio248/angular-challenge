@@ -10,16 +10,31 @@ export const loadedTasks = createAction(
 );
 
 export const createTask = createAction(
-  '[Task] Create Post',
+  '[Task] Create Task',
   props<{ data: CreateTaskDto }>(),
 );
 
 export const createTaskSuccess = createAction(
-  '[Task] Create Post Success',
+  '[Task] Create Task Success',
   props<{ data: TaskModel }>(),
 );
 
 export const createTaskFailure = createAction(
-  '[Task] Create Post Failure',
+  '[Task] Create Task Failure',
+  props<{ error: string }>(),
+);
+
+export const updateTask = createAction(
+  '[Task] Update Task',
+  props<{ id: string; data: CreateTaskDto }>(),
+);
+
+export const updateTaskSuccess = createAction(
+  '[Task] Update Task Success',
+  props<{ data: TaskModel }>(),
+);
+
+export const updateTaskFailure = createAction(
+  '[Task] Update Task Failure',
   props<{ error: string }>(),
 );

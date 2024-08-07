@@ -27,4 +27,14 @@ export const tasksReducer = createReducer(
     ...state,
     error: action.error,
   })),
+  on(TasksActions.updateTaskSuccess, (state, { data }) => ({
+    ...state,
+    tasks: state.tasks.map((task) =>
+      task.id === data.id ? { ...task, ...data } : task,
+    ),
+  })),
+  on(TasksActions.updateTaskFailure, (state, action) => ({
+    ...state,
+    error: action.error,
+  })),
 );

@@ -35,4 +35,18 @@ export class TaskEffect {
       ),
     ),
   );
+
+  updateTask$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(TasksActions.updateTask),
+      switchMap((action) =>
+        this.tasksService.update(action.id, action.data).pipe(
+          map((data) => TasksActions.updateTaskSuccess({ data })),
+          catchError((error) =>
+            of(TasksActions.updateTaskFailure({ error: error.message })),
+          ),
+        ),
+      ),
+    ),
+  );
 }
