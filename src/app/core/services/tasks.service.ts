@@ -20,4 +20,8 @@ export class TasksService {
   update(id: string, updateTaskDto: CreateTaskDto) {
     return this.http.put<TaskModel>(`tasks/${id}`, updateTaskDto);
   }
+
+  delete(id: string) {
+    return this.http.delete<TaskModel>(`tasks/${id}`);
+  }
 }

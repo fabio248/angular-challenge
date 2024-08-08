@@ -49,4 +49,18 @@ export class TaskEffect {
       ),
     ),
   );
+
+  deleteTask$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(TasksActions.deleteTask),
+      switchMap((action) =>
+        this.tasksService.delete(action.id).pipe(
+          map(() => TasksActions.deleteTaskSuccess({ id: action.id })),
+          catchError((error) =>
+            of(TasksActions.deleteTaskFailure({ error: error.message })),
+          ),
+        ),
+      ),
+    ),
+  );
 }

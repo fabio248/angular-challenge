@@ -38,3 +38,18 @@ export const updateTaskFailure = createAction(
   '[Task] Update Task Failure',
   props<{ error: string }>(),
 );
+
+export const deleteTask = createAction(
+  '[Task] Delete Task',
+  props<{ id: string }>(),
+);
+
+export const deleteTaskSuccess = createAction(
+  '[Task] Delete Task Success',
+  props<{ id: string }>(),
+);
+
+export const deleteTaskFailure = createAction(
+  '[Task] Delete Task Failure',
+  props<{ error: string }>(),
+);

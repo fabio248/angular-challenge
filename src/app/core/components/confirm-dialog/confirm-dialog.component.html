@@ -1,0 +1,16 @@
+<p mat-dialog-title>{{ data.message }}</p>
+<mat-dialog-actions class="flex gap-6">
+  <button
+    class="bg-transparent text-neutral-1 p-2 rounded-lg hover:bg-neutral-2"
+    [mat-dialog-close]="false"
+    (click)="onCancel()"
+  >
+    {{ data.cancelText || 'Cancel' }}
+  </button>
+  <button
+    class="bg-primary-4 text-neutral-1 p-2 rounded-lg disabled:bg-primary-2"
+    [mat-dialog-close]="true"
+  >
+    {{ data.confirmText || 'Confirm' }}
+  </button>
+</mat-dialog-actions>

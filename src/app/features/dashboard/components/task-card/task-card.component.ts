@@ -10,6 +10,10 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { MatMenu, MatMenuItem, MatMenuTrigger } from '@angular/material/menu';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { CreateTaskDialogComponent } from '../../../../core/components/create-task-dialog/create-task-dialog.component';
+import { ConfirmDialogComponent } from '../../../../core/components/confirm-dialog/confirm-dialog.component';
+import { Store } from '@ngrx/store';
+import { AppState } from '../../../../core/state/app.state';
+import { deleteTask } from '../../../../core/state/actions/task.action';
 
 @Component({
   selector: 'app-task-card',
@@ -29,6 +33,7 @@ import { CreateTaskDialogComponent } from '../../../../core/components/create-ta
 })
 export class TaskCardComponent {
   readonly dialog = inject(MatDialog);
+  readonly store: Store<AppState> = inject(Store);
   @Input() card!: TaskModel;
 
   constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer) {
@@ -64,6 +69,22 @@ export class TaskCardComponent {
   }
 
   openDeleteTaskDialog(): void {
-    console.log('Delete task');
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.panelClass = 'create-task-dialog';
+    dialogConfig.width = '36rem';
+    dialogConfig.data = {
+      message: `Do you want to delete the task ${this.card.name}?`,
+    };
+    const deleteDialogRef = this.dialog.open(
+      ConfirmDialogComponent,
+      dialogConfig,
+    );
+
+    deleteDialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.store.dispatch(deleteTask({ id: this.card.id }));
+      }
+    });
   }
 }

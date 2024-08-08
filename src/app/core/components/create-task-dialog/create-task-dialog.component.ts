@@ -103,7 +103,6 @@ export class CreateTaskDialogComponent {
       assigneeAvatar: new FormControl(data?.assignee.avatar || ''),
       assigneeName: new FormControl(data?.assignee.fullName || ''),
     });
-    console.log('addForm', this.addForm.value);
   }
 
   addTag(event: Event): void {

@@ -37,4 +37,12 @@ export const tasksReducer = createReducer(
     ...state,
     error: action.error,
   })),
+  on(TasksActions.deleteTaskSuccess, (state, { id }) => ({
+    ...state,
+    tasks: state.tasks.filter((task) => task.id !== id),
+  })),
+  on(TasksActions.deleteTaskFailure, (state, action) => ({
+    ...state,
+    error: action.error,
+  })),
 );
