@@ -1,14 +1,14 @@
 <div class="flex flex-col gap-4 w-[21.3rem]">
   <div>
-    <span class="text-white text-lg"
-      >{{ title }} ({{ totalTasks | async }})</span
-    >
+    <span class="text-white text-lg">{{ title }} ({{ totalTasks }})</span>
   </div>
   <div class="flex gap-4 flex-col">
-    @for (task of tasks | async; track task.id) {
-      @if (task.status === statusTask) {
-        <app-task-card [card]="task" />
-      }
+    @for (task of tasks; track task.id) {
+      <app-task-card
+        [card]="task"
+        cdkDrag
+        (cdkDragStarted)="dragStarted($event)"
+      />
     }
   </div>
 </div>

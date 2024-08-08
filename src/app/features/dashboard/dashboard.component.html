@@ -4,12 +4,47 @@
   @if (loading | async) {
     <app-skeleton-columns />
   } @else {
-    <div class="flex gap-8">
-      <app-columns [tasks]="tasks" [statusTask]="StatusTaskEnum.BACKLOG" />
-      <app-columns [tasks]="tasks" [statusTask]="StatusTaskEnum.TODO" />
-      <app-columns [tasks]="tasks" [statusTask]="StatusTaskEnum.IN_PROGRESS" />
-      <app-columns [tasks]="tasks" [statusTask]="StatusTaskEnum.DONE" />
-      <app-columns [tasks]="tasks" [statusTask]="StatusTaskEnum.CANCELLED" />
+    <div class="flex gap-8" cdkDropListGroup>
+      <app-columns
+        [id]="StatusTaskEnum.BACKLOG"
+        [tasks]="backlogTasks"
+        [statusTask]="StatusTaskEnum.BACKLOG"
+        cdkDropList
+        (cdkDropListDropped)="drop($event)"
+        [cdkDropListData]="backlogTasks"
+      />
+      <app-columns
+        [id]="StatusTaskEnum.TODO"
+        [tasks]="todoTasks"
+        [statusTask]="StatusTaskEnum.TODO"
+        cdkDropList
+        (cdkDropListDropped)="drop($event)"
+        [cdkDropListData]="todoTasks"
+      />
+      <app-columns
+        [id]="StatusTaskEnum.IN_PROGRESS"
+        [tasks]="workingTasks"
+        [statusTask]="StatusTaskEnum.IN_PROGRESS"
+        cdkDropList
+        (cdkDropListDropped)="drop($event)"
+        [cdkDropListData]="workingTasks"
+      />
+      <app-columns
+        [id]="StatusTaskEnum.DONE"
+        [tasks]="completedTasks"
+        [statusTask]="StatusTaskEnum.DONE"
+        cdkDropList
+        (cdkDropListDropped)="drop($event)"
+        [cdkDropListData]="completedTasks"
+      />
+      <app-columns
+        [id]="StatusTaskEnum.CANCELLED"
+        [tasks]="cancelledTasks"
+        [statusTask]="StatusTaskEnum.CANCELLED"
+        cdkDropList
+        (cdkDropListDropped)="drop($event)"
+        [cdkDropListData]="cancelledTasks"
+      />
     </div>
   }
 </div>

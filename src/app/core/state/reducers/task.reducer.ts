@@ -45,4 +45,10 @@ export const tasksReducer = createReducer(
     ...state,
     error: action.error,
   })),
+  on(TasksActions.updateTaskLocal, (state, { id, data }) => ({
+    ...state,
+    tasks: state.tasks.map((task) =>
+      task.id === id ? { ...task, ...data } : task,
+    ),
+  })),
 );

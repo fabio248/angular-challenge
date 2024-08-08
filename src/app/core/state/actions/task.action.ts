@@ -1,6 +1,7 @@
 import { createAction, props } from '@ngrx/store';
 import { TaskModel } from '../../models/task.model';
 import { CreateTaskDto } from '../../dtos/create-task.dto';
+import { UpdateTaskDto } from '../../dtos/update-task.dto';
 
 export const loadTasks = createAction('[Task] Load Tasks');
 
@@ -26,7 +27,12 @@ export const createTaskFailure = createAction(
 
 export const updateTask = createAction(
   '[Task] Update Task',
-  props<{ id: string; data: CreateTaskDto }>(),
+  props<{ id: string; data: UpdateTaskDto }>(),
+);
+
+export const updateTaskLocal = createAction(
+  '[Task] Update Task Local',
+  props<{ id: string; data: UpdateTaskDto }>(),
 );
 
 export const updateTaskSuccess = createAction(
