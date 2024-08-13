@@ -15,6 +15,11 @@ export const createTask = createAction(
   props<{ data: CreateTaskDto }>(),
 );
 
+export const createTaskLocal = createAction(
+  '[Task] Create Task Local',
+  props<{ data: TaskModel }>(),
+);
+
 export const createTaskSuccess = createAction(
   '[Task] Create Task Success',
   props<{ data: TaskModel }>(),

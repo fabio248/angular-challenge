@@ -33,7 +33,12 @@ import { selectListUsers } from '../../state/selectors/user.selector';
 import { AsyncPipe, DatePipe, NgClass } from '@angular/common';
 import { StatusTaskEnum, TaskModel } from '../../models/task.model';
 import { getLabelTags } from '../../../features/dashboard/utils/get-label-tag.utils';
-import { createTask, updateTask } from '../../state/actions/task.action';
+import {
+  createTask,
+  createTaskLocal,
+  updateTask,
+  updateTaskLocal,
+} from '../../state/actions/task.action';
 
 @Component({
   selector: 'app-create-task-modal',
@@ -162,9 +167,24 @@ export class CreateTaskDialogComponent {
     delete bodyRequest.assigneeName;
 
     if (this.isEditMode) {
+      this.store.dispatch(
+        updateTaskLocal({ id: this.data!.id, data: bodyRequest }),
+      );
       this.store.dispatch(updateTask({ id: this.data!.id, data: bodyRequest }));
     } else {
       this.store.dispatch(createTask({ data: bodyRequest }));
+
+      let assignedUser;
+      this.users.subscribe((users) =>
+        users.forEach((user) => {
+          if (user.id === bodyRequest.assigneeId) {
+            assignedUser = user;
+          }
+        }),
+      );
+
+      const localTask = { ...bodyRequest, assignee: assignedUser };
+      this.store.dispatch(createTaskLocal({ data: localTask }));
     }
 
     this.addForm.reset();
