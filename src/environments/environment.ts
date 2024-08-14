@@ -1,5 +1,4 @@
 export const environment = {
-  env: process.env['ENV'],
-  apiToken: process.env['API_TOKEN'],
-  apiUrl: process.env['API_URL'],
+  apiToken: process.env['NG_APP_API'],
+  apiUrl: process.env['NG_APP_API_TOKEN'],
 };

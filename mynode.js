@@ -2,12 +2,11 @@ const fs = require('fs');
 const path = require('path');
 const successColor = '\x1b[32m%s\x1b[0m';
 const checkSign = '\u{2705}';
-const dotenv = require('dotenv').config({path: 'src/.env'}); ;
+const dotenv = require('dotenv').config({path: '.env'}); ;
 
 const envFile = `export const environment = {
-  env: process.env['ENV'],
-  apiToken: process.env['API_TOKEN'],
-  apiUrl: process.env['API_URL'],
+  apiToken: process.env['NG_APP_API'],
+  apiUrl: process.env['NG_APP_API_TOKEN'],
 };
 `;
 const targetPath = path.join(__dirname, './src/environments/environment.development.ts');
