@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "node -r dotenv/config mynode.js && ng serve",
-    "build": "node -r dotenv/config mynode.js && ng build",
+    "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "prepare": "husky install",
@@ -30,6 +30,7 @@
     "primeng": "17.18.6",
     "rxjs": "~7.8.0",
     "tslib": "2.3.0",
+    "webpack": "^5.93.0",
     "zone.js": "~0.14.3"
   },
   "devDependencies": {
