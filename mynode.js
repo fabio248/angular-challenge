@@ -10,12 +10,12 @@ const envFile = `export const environment = {
   apiUrl: process.env['API_URL'],
 };
 `;
-const targetPath = path.join(__dirname, './src/environments/environment.ts');
+const targetPath = path.join(__dirname, './src/environments/environment.development.ts');
 fs.writeFile(targetPath, envFile, (err) => {
   if (err) {
     console.error(err);
     throw err;
   } else {
-    console.log(successColor, `${checkSign} Successfully generated environment.ts`);
+    console.log(successColor, `${checkSign} Successfully generated environment.development.ts`);
   }
 });
