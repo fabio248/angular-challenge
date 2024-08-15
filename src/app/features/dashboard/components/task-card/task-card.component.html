@@ -16,7 +16,7 @@
     <app-time-task [dueDate]="card.dueDate" />
   </div>
   <div class="flex">
-    <app-tag-list [tags]="card.tags" />
+    <app-tag-list [tags]="card.tags" [numberTasksShow]="2" />
   </div>
   <div class="flex justify-between items-center">
     <app-avatar [source]="card.assignee.avatar" />

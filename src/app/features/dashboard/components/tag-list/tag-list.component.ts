@@ -13,11 +13,12 @@ import { getLabelTags } from '../../utils/get-label-tag.utils';
 })
 export class TagListComponent {
   @Input() tags: TagsEnum[] = [];
+  @Input() numberTasksShow!: number;
 
   getLabelExtraTags() {
     let extraTags = '';
 
-    this.tags.slice(2).forEach((tag) => {
+    this.tags.slice(this.numberTasksShow).forEach((tag) => {
       extraTags += getLabelTags(tag) + '\n';
     });
 
