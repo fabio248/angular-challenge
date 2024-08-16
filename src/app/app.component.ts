@@ -14,6 +14,7 @@ import { MainButtonsComponent } from './core/components/main-buttons/main-button
     MainButtonsComponent,
   ],
   templateUrl: './app.component.html',
+  styleUrl: './app.component.scss',
 })
 export class AppComponent {
   title = 'angular-challenge';
