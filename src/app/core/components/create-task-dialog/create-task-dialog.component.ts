@@ -64,7 +64,7 @@ import {
   ],
   providers: [provideNativeDateAdapter()],
   templateUrl: './create-task-dialog.component.html',
-  styleUrl: './create-task-dialog.component.css',
+  styleUrl: './create-task-dialog.component.scss',
 })
 export class CreateTaskDialogComponent {
   readonly dialogRef = inject(MatDialogRef<CreateTaskDialogComponent>);

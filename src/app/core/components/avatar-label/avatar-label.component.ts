@@ -6,7 +6,7 @@ import { AvatarComponent } from '../avatar/avatar.component';
   standalone: true,
   imports: [AvatarComponent],
   templateUrl: './avatar-label.component.html',
-  styleUrl: './avatar-label.component.css',
+  styleUrl: './avatar-label.component.scss',
 })
 export class AvatarLabelComponent {
   @Input() avatar!: string;

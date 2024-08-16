@@ -7,7 +7,7 @@ import dayjs from 'dayjs';
   standalone: true,
   imports: [DatePipe, NgClass],
   templateUrl: './time-task.component.html',
-  styleUrl: './time-task.component.css',
+  styleUrl: './time-task.component.scss',
 })
 export class TimeTaskComponent {
   @Input() dueDate!: Date;

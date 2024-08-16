@@ -6,6 +6,6 @@ import { SkeletonModule } from 'primeng/skeleton';
   standalone: true,
   imports: [SkeletonModule],
   templateUrl: './skeleton-columns.component.html',
-  styleUrl: './skeleton-columns.component.css',
+  styleUrl: './skeleton-columns.component.scss',
 })
 export class SkeletonColumnsComponent {}

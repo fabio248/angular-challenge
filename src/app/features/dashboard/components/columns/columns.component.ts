@@ -10,7 +10,7 @@ import { CdkDrag, CdkDragStart } from '@angular/cdk/drag-drop';
   standalone: true,
   imports: [TaskCardComponent, AsyncPipe, CdkDrag],
   templateUrl: './columns.component.html',
-  styleUrl: './columns.component.css',
+  styleUrl: './columns.component.scss',
 })
 export class ColumnsComponent implements OnInit {
   @Input() statusTask!: StatusTaskEnum;

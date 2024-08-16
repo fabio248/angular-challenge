@@ -6,7 +6,7 @@ import { NgOptimizedImage } from '@angular/common';
   standalone: true,
   imports: [NgOptimizedImage],
   templateUrl: './avatar.component.html',
-  styleUrl: './avatar.component.css',
+  styleUrl: './avatar.component.scss',
 })
 export class AvatarComponent {
   @Input() source: string | null = 'https://avatar.iran.liara.run/public/42';
