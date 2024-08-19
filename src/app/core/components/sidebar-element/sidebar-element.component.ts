@@ -7,6 +7,7 @@ import { NgClass } from '@angular/common';
   standalone: true,
   imports: [RouterLink, RouterLinkActive, NgClass],
   templateUrl: './sidebar-element.component.html',
+  styleUrl: './sidebar-element.component.scss',
 })
 export class SidebarElementComponent {
   @Input() icon!: string;

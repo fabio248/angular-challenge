@@ -1,0 +1,35 @@
+@use 'src/app/core/utils/variables' as vars;
+
+.sidebar-element {
+  @apply text-white;
+
+  &__link {
+    @apply flex items-center justify-between h-14 gap-2;
+
+    &--inactive {
+      @apply text-primary-4 bg-gradient-to-l from-[#3D3236];
+    }
+  }
+
+  .link__divider {
+    @apply border-l-4 h-14;
+  }
+
+  .link__element {
+    @apply flex items-center gap-2;
+
+    &--active {
+      @apply text-neutral-2;
+    }
+  }
+
+  .element {
+    &__icon {
+      @apply pl-8;
+    }
+
+    &__text {
+      @apply lg:block hidden;
+    }
+  }
+}

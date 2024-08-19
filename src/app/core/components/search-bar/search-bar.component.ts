@@ -8,6 +8,7 @@ import { DomSanitizer } from '@angular/platform-browser';
   standalone: true,
   imports: [AvatarComponent, MatIcon],
   templateUrl: './search-bar.component.html',
+  styleUrl: 'search-bar.component.scss',
 })
 export class SearchBarComponent {
   constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer) {

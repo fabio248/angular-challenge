@@ -1,0 +1,13 @@
+.search-bar {
+  @apply flex w-full text-white rounded-2xl items-center justify-between bg-neutral-4 h-16 px-6;
+
+  &__element {
+    @apply flex items-center gap-6;
+  }
+
+  .element {
+    &__input {
+      @apply bg-transparent h-16 border-none text-white lg:w-96 focus:outline-none;
+    }
+  }
+}

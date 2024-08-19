@@ -1,20 +1,20 @@
-<li class="text-white hover:text-primary-4">
+<li class="sidebar-element">
   <a
     [routerLink]="route"
-    class="flex items-center justify-between h-14 gap-2"
-    routerLinkActive="text-primary-4 bg-gradient-to-l from-[#3D3236]"
+    class="sidebar-element__link"
+    routerLinkActive="sidebar-element__link--inactive"
   >
     <div
-      class="flex items-center gap-2"
-      [ngClass]="router.url !== route ? 'text-neutral-2' : ''"
+      class="link__element"
+      [ngClass]="router.url !== route ? 'link__element--active' : ''"
     >
-      <span class="material-icons pl-8">{{ icon }}</span>
+      <span class="material-icons element__icon">{{ icon }}</span>
       &nbsp;
-      <span class="lg:block hidden">{{ title }}</span>
+      <span class="element__text">{{ title }}</span>
     </div>
     <div
       [routerLink]="route"
-      routerLinkActive="border-l-4 h-14"
+      routerLinkActive="link__divider"
       [ngClass]="router.url !== route ? 'hidden' : 'border-primary-4'"
     ></div>
   </a>
