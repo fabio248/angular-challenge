@@ -20,6 +20,7 @@ import { loadUsers } from '../../state/actions/user.action';
     MatMiniFabButton,
   ],
   templateUrl: './main-buttons.component.html',
+  styleUrl: './main-buttons.component.scss',
 })
 export class MainButtonsComponent {
   readonly dialog = inject(MatDialog);

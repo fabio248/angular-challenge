@@ -1,0 +1,7 @@
+.avatar-label {
+  @apply flex gap-2 items-center;
+
+  &__name {
+    @apply text-white;
+  }
+}

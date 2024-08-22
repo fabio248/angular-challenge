@@ -2,17 +2,17 @@
   <input
     id="task-name"
     mat-dialog-title
-    class="bg-transparent text-neutral-2 font-semibold focus:outline-none pt-2 w-full"
+    class="dialog__title dialog__title--focus"
     placeholder="Task Title"
     formControlName="name"
   />
 
   <mat-dialog-content>
-    <div class="flex flex-wrap w-full gap-3">
+    <div class="dialog__container">
       <button
-        class="flex gap-2 rounded text-neutral-1 px-4 py-1 items-center"
+        class="dialog__option"
         [ngClass]="
-          getValueForm('pointEstimate') !== null ? '' : 'bg-[#94979A1A]'
+          getValueForm('pointEstimate') !== null ? '' : 'dialog__option--active'
         "
         [matMenuTriggerFor]="estimatedMenu"
       >
@@ -23,9 +23,10 @@
           <span>{{ getValueForm('pointEstimate') }} Points</span>
         }
       </button>
+
       <button
-        class="flex gap-2 rounded text-neutral-1 px-4 py-1 items-center"
-        [ngClass]="getValueForm('assigneeId') ? '' : 'bg-[#94979A1A]'"
+        class="dialog__option"
+        [ngClass]="getValueForm('assigneeId') ? '' : 'dialog__option--active'"
         [matMenuTriggerFor]="assignMenu"
       >
         @if (getValueForm('assigneeId') === null) {
@@ -38,8 +39,9 @@
           />
         }
       </button>
+
       <button
-        class="flex gap-2 rounded text-neutral-1 px-4 py-1 items-center bg-[#94979A1A]"
+        class="dialog__option dialog__option--active"
         [matMenuTriggerFor]="tagMenu"
       >
         @if (getValueForm('tags').length === 0) {
@@ -49,21 +51,22 @@
           <span>{{ getLabelTag() }}</span>
         }
       </button>
+
       <button
-        class="flex rounded text-neutral-1 px-4 py-1 items-center bg-[#94979A1A]"
+        class="dialog__option dialog__option--active"
         (click)="picker.open()"
       >
         <input
           matInput
           [matDatepicker]="picker"
-          style="width: 0; height: 25px; visibility: hidden"
+          class="dialog__input-calendar"
           formControlName="dueDate"
         />
         @if (!getValueForm('dueDate')) {
-          <mat-icon svgIcon="calendar" class="mr-1" />
+          <mat-icon svgIcon="calendar" class="dialog__icon" />
           Due Date
         } @else {
-          <mat-icon svgIcon="calendar" class="mr-1" />
+          <mat-icon svgIcon="calendar" class="dialog__icon" />
           <span>{{ getValueForm('dueDate') | date: 'mediumDate' }}</span>
         }
       </button>
@@ -73,9 +76,9 @@
     </div>
   </mat-dialog-content>
   <mat-dialog-actions>
-    <div class="flex gap-6">
+    <div class="dialog__actions">
       <button
-        class="bg-transparent text-neutral-1 p-2 rounded-lg hover:bg-neutral-2"
+        class="dialog__cancel-button dialog__cancel-button--hover"
         (click)="close()"
       >
         Cancel
@@ -83,7 +86,7 @@
       <button
         (click)="submit()"
         [disabled]="addForm.invalid"
-        class="bg-primary-4 text-neutral-1 p-2 rounded-lg disabled:bg-primary-2"
+        class="dialog__confirm-button dialog__confirm-button--disabled"
       >
         {{ isEditMode ? 'Update' : 'Create' }}
       </button>
@@ -92,7 +95,7 @@
 </form>
 
 <!--Menus for estimatedMenu, assignMenu, and tagMenu-->
-<mat-menu #estimatedMenu="matMenu" class="border border-neutral-2">
+<mat-menu #estimatedMenu="matMenu" class="menu">
   <button mat-menu-item (click)="addPointEstimate(0)">
     <mat-icon svgIcon="estimate" />0 Points
   </button>
@@ -110,7 +113,7 @@
   </button>
 </mat-menu>
 
-<mat-menu #assignMenu="matMenu" class="border border-neutral-2">
+<mat-menu #assignMenu="matMenu" class="menu">
   @for (user of users | async; track user.id) {
     <button
       mat-menu-item
@@ -126,13 +129,13 @@
     </button>
   }
 </mat-menu>
-
-<mat-menu #tagMenu="matMenu" class="border border-neutral-2">
+<!--TODO: Review why border is not working-->
+<mat-menu #tagMenu="matMenu" class="menu">
   <button mat-menu-item (click)="$event.stopPropagation()">
-    <div class="flex gap-1 items-center">
+    <div class="menu__item">
       <input
         type="checkbox"
-        class="w-4 h-4 accent-primary-4"
+        class="menu__input"
         value="IOS"
         (change)="addTag($event)"
         [checked]="isTagSelected('IOS')"
@@ -141,10 +144,10 @@
     </div>
   </button>
   <button mat-menu-item (click)="$event.stopPropagation()">
-    <div class="flex gap-1 items-center">
+    <div class="menu__item">
       <input
         type="checkbox"
-        class="w-4 h-4 accent-primary-4"
+        class="menu__input"
         value="ANDROID"
         (change)="addTag($event)"
         [checked]="isTagSelected('ANDROID')"
@@ -153,10 +156,10 @@
     </div>
   </button>
   <button mat-menu-item (click)="$event.stopPropagation()">
-    <div class="flex gap-1 items-center">
+    <div class="menu__item">
       <input
         type="checkbox"
-        class="w-4 h-4 accent-primary-4"
+        class="menu__input"
         value="REACT"
         (change)="addTag($event)"
         [checked]="isTagSelected('REACT')"
@@ -165,10 +168,10 @@
     </div>
   </button>
   <button mat-menu-item (click)="$event.stopPropagation()">
-    <div class="flex gap-1 items-center">
+    <div class="menu__item">
       <input
         type="checkbox"
-        class="w-4 h-4 accent-primary-4"
+        class="menu__input"
         value="NODE_JS"
         (change)="addTag($event)"
         [checked]="isTagSelected('NODE_JS')"
@@ -177,10 +180,10 @@
     </div>
   </button>
   <button mat-menu-item (click)="$event.stopPropagation()">
-    <div class="flex gap-1 items-center">
+    <div class="menu__item">
       <input
         type="checkbox"
-        class="w-4 h-4 accent-primary-4"
+        class="menu__input"
         value="RAILS"
         (change)="addTag($event)"
         [checked]="isTagSelected('RAILS')"

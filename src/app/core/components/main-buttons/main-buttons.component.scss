@@ -1,0 +1,19 @@
+.block {
+  @apply flex mt-8 justify-between;
+
+  &__container {
+    @apply flex gap-2 text-white items-center;
+  }
+
+  &__element {
+    @apply flex h-10 w-10 rounded-xl items-center justify-center;
+
+    &--hover {
+      @apply hover:text-primary-4;
+    }
+
+    &--active {
+      @apply text-primary-4 border-primary-4 border;
+    }
+  }
+}

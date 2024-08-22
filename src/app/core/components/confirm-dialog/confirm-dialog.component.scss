@@ -1,0 +1,13 @@
+.dialog-actions {
+  &__button-confirm {
+    @apply bg-primary-4 text-neutral-1 p-2 rounded-lg;
+  }
+
+  &__button-cancel {
+    @apply bg-transparent text-neutral-1 p-2 rounded-lg;
+  }
+
+  &__button-cancel--hover:hover {
+    @apply bg-neutral-2;
+  }
+}

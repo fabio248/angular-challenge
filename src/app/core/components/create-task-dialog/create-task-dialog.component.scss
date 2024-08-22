@@ -1,3 +1,5 @@
+$bg-button: #94979a1a;
+
 /*Overwrite the default autofill styles for input fields.*/
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
@@ -5,4 +7,68 @@ input:-webkit-autofill:focus {
   -webkit-text-fill-color: #fff; /* White text color */
   -webkit-box-shadow: 0 0 0 1000px transparent inset; /* Transparent background */
   transition: background-color 5000s ease-in-out 0s;
+}
+
+.dialog {
+  &__title {
+    @apply bg-transparent text-neutral-2 pt-4 w-full;
+
+    &--focus {
+      @apply focus:outline-none;
+    }
+  }
+
+  &__container {
+    @apply flex flex-wrap w-full gap-3;
+  }
+
+  &__option {
+    @apply flex gap-2 rounded text-neutral-1 px-4 py-1 items-center;
+
+    &--active {
+      background-color: $bg-button;
+    }
+  }
+
+  &__input-calendar {
+    width: 0;
+    height: 25px;
+    visibility: hidden;
+  }
+
+  &__icon {
+    @apply mr-1;
+  }
+
+  &__actions {
+    @apply flex gap-6;
+  }
+
+  &__cancel-button {
+    @apply bg-transparent text-neutral-1 p-2 rounded-lg;
+
+    &--hover:hover {
+      background-color: $bg-button;
+    }
+  }
+
+  &__confirm-button {
+    @apply bg-primary-4 text-neutral-1 p-2 rounded-lg;
+
+    &--disabled {
+      @apply disabled:bg-primary-2;
+    }
+  }
+}
+
+.menu {
+  @apply border border-neutral-2;
+
+  &__item {
+    @apply flex gap-1 items-center;
+  }
+
+  &__input {
+    @apply w-4 h-4 accent-primary-4;
+  }
 }
