@@ -1,0 +1,11 @@
+.column {
+  @apply flex flex-col gap-4;
+
+  &__title {
+    @apply text-white text-lg;
+  }
+
+  &__list-card {
+    @apply flex flex-col gap-4;
+  }
+}

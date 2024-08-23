@@ -5,17 +5,21 @@
     routerLinkActive="sidebar-element__link--inactive"
   >
     <div
-      class="link__element"
-      [ngClass]="router.url !== route ? 'link__element--active' : ''"
+      class="sidebar-element__item"
+      [ngClass]="router.url !== route ? 'sidebar-element__item--active' : ''"
     >
-      <span class="material-icons element__icon">{{ icon }}</span>
+      <span class="material-icons sidebar-element__icon">{{ icon }}</span>
       &nbsp;
-      <span class="element__text">{{ title }}</span>
+      <span class="sidebar-element__text">{{ title }}</span>
     </div>
     <div
       [routerLink]="route"
-      routerLinkActive="link__divider"
-      [ngClass]="router.url !== route ? 'hidden' : 'border-primary-4'"
+      routerLinkActive="sidebar-element__divider"
+      [ngClass]="
+        router.url !== route
+          ? 'sidebar-element__divider--inactive'
+          : 'sidebar-element__divider--active'
+      "
     ></div>
   </a>
 </li>

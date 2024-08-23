@@ -1,0 +1,7 @@
+.container {
+  @apply flex flex-col gap-2 transition-all duration-500 ease-in-out lg:ml-[18rem] ml-[7.5rem];
+
+  &__column-grid {
+    @apply flex gap-8;
+  }
+}

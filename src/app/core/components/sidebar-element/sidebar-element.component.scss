@@ -11,11 +11,19 @@
     }
   }
 
-  .link__divider {
+  &__divider {
     @apply border-l-4 h-14;
+
+    &--active {
+      @apply border-primary-4;
+    }
+
+    &--inactive {
+      @apply hidden;
+    }
   }
 
-  .link__element {
+  &__item {
     @apply flex items-center gap-2;
 
     &--active {
@@ -23,13 +31,11 @@
     }
   }
 
-  .element {
-    &__icon {
-      @apply pl-8;
-    }
+  &__icon {
+    @apply pl-8;
+  }
 
-    &__text {
-      @apply lg:block hidden;
-    }
+  &__text {
+    @apply lg:block hidden;
   }
 }

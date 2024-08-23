@@ -30,6 +30,7 @@ import { deleteTask } from '../../../../core/state/actions/task.action';
     MatMenuTrigger,
   ],
   templateUrl: './task-card.component.html',
+  styleUrl: './task-card.component.scss',
 })
 export class TaskCardComponent {
   readonly dialog = inject(MatDialog);

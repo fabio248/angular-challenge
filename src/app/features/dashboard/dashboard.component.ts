@@ -38,6 +38,7 @@ import {
     CdkDropList,
   ],
   templateUrl: './dashboard.component.html',
+  styleUrl: './dashboard.component.scss',
 })
 export class DashboardComponent implements OnInit {
   private store: Store<AppState> = inject(Store);

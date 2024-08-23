@@ -1,34 +1,34 @@
-<div
-  class="flex flex-col justify-between gap-2 bg-neutral-4 w-[21.75rem] h-52 rounded-md p-4"
->
-  <div class="flex justify-between">
-    <span class="font-semibold text-white text-xl">{{ card.name }}</span>
-    <span class="material-icons text-neutral-2" [matMenuTriggerFor]="options"
-      >more_horiz</span
+<div class="task-card">
+  <div class="task-card__header">
+    <span class="task-card__title">{{ card.name }}</span>
+    <button
+      class="material-icons task-card__header-button"
+      [matMenuTriggerFor]="options"
     >
+      more_horiz
+    </button>
   </div>
-  <div class="flex w-full justify-between">
+  <div class="task-card__content">
     <div>
-      <span class="font-semibold text-white">
-        {{ card.pointEstimate }} Points
-      </span>
+      <span class="task-card__points"> {{ card.pointEstimate }} Points </span>
     </div>
     <app-time-task [dueDate]="card.dueDate" />
   </div>
-  <div class="flex">
-    <app-tag-list [tags]="card.tags" [numberTasksShow]="2" />
-  </div>
-  <div class="flex justify-between items-center">
+
+  <app-tag-list [tags]="card.tags" [numberTasksShow]="1" />
+
+  <div class="task-card__footer">
     <app-avatar [source]="card.assignee.avatar" />
-    <div class="flex gap-4 text-white">
-      <mat-icon svgIcon="clip" style="width: 16px" />
-      <div class="flex">
+
+    <div class="task-card__icons">
+      <mat-icon svgIcon="clip" class="task-card__icon" />
+      <div class="task-card__container-icon">
         <span>3&nbsp;</span>
-        <mat-icon svgIcon="squares" style="width: 16px" />
+        <mat-icon svgIcon="squares" class="task-card__icon" />
       </div>
-      <div class="flex">
+      <div class="task-card__container-icon">
         <span>3&nbsp;</span>
-        <mat-icon svgIcon="comment" style="width: 16px" />
+        <mat-icon svgIcon="comment" class="task-card__icon" />
       </div>
     </div>
   </div>
@@ -37,14 +37,14 @@
 <mat-menu #options="matMenu">
   <button
     mat-menu-item
-    class="flex flex-wrap items-center"
+    class="task-card__menu-button"
     (click)="openEditTaskDialog()"
   >
     <mat-icon svgIcon="edit" /> Edit
   </button>
   <button
     mat-menu-item
-    class="flex items-center"
+    class="task-card__menu-button"
     (click)="openDeleteTaskDialog()"
   >
     <mat-icon svgIcon="delete" style="width: 20px" /> Delete

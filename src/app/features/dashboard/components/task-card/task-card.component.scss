@@ -1,0 +1,43 @@
+.task-card {
+  @apply flex flex-col justify-between gap-2 bg-neutral-4 w-[21.75rem] h-52 rounded-md p-4;
+
+  &__header {
+    @apply flex justify-between;
+  }
+
+  &__header-button {
+    @apply text-neutral-2;
+  }
+
+  &__title {
+    @apply font-semibold text-white text-xl;
+  }
+
+  &__content {
+    @apply flex w-full justify-between;
+  }
+
+  &__points {
+    @apply font-semibold text-white;
+  }
+
+  &__footer {
+    @apply flex justify-between items-center;
+  }
+
+  &__icons {
+    @apply flex gap-4 text-white;
+  }
+
+  &__container-icon {
+    @apply flex;
+  }
+
+  &__icon {
+    width: 16px;
+  }
+
+  &__menu-button {
+    @apply flex items-center;
+  }
+}

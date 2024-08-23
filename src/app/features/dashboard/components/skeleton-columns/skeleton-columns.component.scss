@@ -1,0 +1,7 @@
+.skeleton {
+  @apply flex gap-4 w-[21.3rem];
+
+  &__column {
+    @apply flex flex-col flex-wrap gap-4;
+  }
+}

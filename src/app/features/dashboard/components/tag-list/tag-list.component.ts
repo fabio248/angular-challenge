@@ -10,6 +10,7 @@ import { getLabelTags } from '../../utils/get-label-tag.utils';
   standalone: true,
   imports: [TagComponent, NgForOf, SlicePipe, MatTooltip],
   templateUrl: './tag-list.component.html',
+  styleUrl: './tag-list.component.scss',
 })
 export class TagListComponent {
   @Input() tags: TagsEnum[] = [];

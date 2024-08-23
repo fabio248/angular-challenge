@@ -1,0 +1,11 @@
+.tag-list {
+  @apply flex items-center gap-2;
+
+  &__extra-tag {
+    @apply rounded bg-[#94979A1A] py-1 px-4 h-8;
+  }
+
+  &__text {
+    @apply text-white;
+  }
+}

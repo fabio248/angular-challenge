@@ -1,10 +1,8 @@
-<div
-  class="flex flex-col gap-2 transition-all duration-500 ease-in-out lg:ml-[18rem] ml-[7.5rem]"
->
+<div class="container">
   @if (loading | async) {
     <app-skeleton-columns />
   } @else {
-    <div class="flex gap-8" cdkDropListGroup>
+    <div class="container__column-grid" cdkDropListGroup>
       <app-columns
         [id]="StatusTaskEnum.BACKLOG"
         [tasks]="backlogTasks"

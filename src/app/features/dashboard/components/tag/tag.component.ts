@@ -8,6 +8,7 @@ import { getLabelTags } from '../../utils/get-label-tag.utils';
   standalone: true,
   imports: [NgClass],
   templateUrl: './tag.component.html',
+  styleUrl: './tag.component.scss',
 })
 export class TagComponent {
   @Input() tag!: TagsEnum;

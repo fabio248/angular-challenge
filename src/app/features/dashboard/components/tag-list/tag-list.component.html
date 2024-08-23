@@ -1,14 +1,14 @@
-<div class="flex items-center gap-2">
+<div class="tag-list">
   @if (tags.length > numberTasksShow) {
     <app-tag
       *ngFor="let tag of tags | slice: 0 : numberTasksShow"
       [tag]="tag"
     />
-    <span class="rounded bg-[#94979A1A] py-1 px-4 h-8">
-      <span class="text-white h-full" [matTooltip]="getLabelExtraTags()">
+    <div class="tag-list__extra-tag">
+      <span class="tag-list__text" [matTooltip]="getLabelExtraTags()">
         +{{ tags.length - numberTasksShow }}
       </span>
-    </span>
+    </div>
   } @else {
     <app-tag *ngFor="let tag of tags" [tag]="tag" />
   }
