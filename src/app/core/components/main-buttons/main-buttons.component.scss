@@ -15,5 +15,17 @@
     &--active {
       @apply text-primary-4 border-primary-4 border;
     }
+
+    &--focus {
+      @apply outline-indigo-200;
+    }
+  }
+
+  &__button {
+    @apply flex items-center justify-center h-10 w-10 rounded-xl bg-primary-4 text-white;
+
+    &--focus {
+      @apply outline-indigo-200;
+    }
   }
 }

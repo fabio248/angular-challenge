@@ -1,27 +1,25 @@
 <div class="block">
   <div class="block__container">
-    <div
+    <button
       routerLink="/my-task"
-      class="block__element block__element--hover"
+      class="block__element block__element--hover block__element--focus"
       routerLinkActive="block__element--active"
     >
       <span class="material-icons">menu</span>
-    </div>
-    <div
+    </button>
+    <button
       routerLink="/dashboard"
-      class="block__element block__element--hover"
+      class="block__element block__element--hover block__element--focus"
       routerLinkActive="block__element--active"
     >
       <span class="material-icons">grid_view</span>
-    </div>
-  </div>
-  <div>
-    <button
-      mat-mini-fab
-      aria-label="create task"
-      (click)="openCreateTaskDialog()"
-    >
-      <span class="material-icons">add</span>
     </button>
   </div>
+  <button
+    class="block__button block__button--focus"
+    aria-label="create task"
+    (click)="openCreateTaskDialog()"
+  >
+    <span class="material-icons">add</span>
+  </button>
 </div>

@@ -4,14 +4,14 @@ $bg-button: #94979a1a;
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus {
-  -webkit-text-fill-color: #fff; /* White text color */
+  -webkit-text-fill-color: #ffffff; /* White text color */
   -webkit-box-shadow: 0 0 0 1000px transparent inset; /* Transparent background */
   transition: background-color 5000s ease-in-out 0s;
 }
 
 .dialog {
   &__title {
-    @apply bg-transparent text-neutral-2 pt-4 w-full;
+    @apply bg-transparent text-white pt-4 w-full;
 
     &--focus {
       @apply focus:outline-none;

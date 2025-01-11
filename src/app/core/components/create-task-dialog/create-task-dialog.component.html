@@ -3,8 +3,9 @@
     id="task-name"
     mat-dialog-title
     class="dialog__title dialog__title--focus"
-    placeholder="Task Title"
+    placeholder="Change color of landing page"
     formControlName="name"
+    aria-label="Task Title"
   />
 
   <mat-dialog-content>
@@ -61,6 +62,7 @@
           [matDatepicker]="picker"
           class="dialog__input-calendar"
           formControlName="dueDate"
+          aria-label="Due Date of Task"
         />
         @if (!getValueForm('dueDate')) {
           <mat-icon svgIcon="calendar" class="dialog__icon" />
